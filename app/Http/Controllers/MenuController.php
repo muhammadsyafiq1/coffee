@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateMenuRequest;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
@@ -33,12 +34,12 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMenuRequest $request)
     {
         $data = $request->all();
         Menu::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('alert','Menu Berhasil Ditambahkan.');
     }
 
     /**
