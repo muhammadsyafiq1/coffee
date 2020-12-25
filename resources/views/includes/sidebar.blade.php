@@ -8,7 +8,7 @@
                 </li>
                 <li class="menu-title">Menu</li><!-- /.menu-title -->
                 <li class="">
-                    <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat Menu</a>
+                    <a href="{{ route('menu.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Menu</a>
                 </li>
                 <li class="">
                     <a href="{{ route('menu.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Menu</a>

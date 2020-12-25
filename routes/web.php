@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,5 +20,7 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/home', [AdminController::class, 'index'])->name('admin');
-Route::resource('menu', App\Http\Controllers\MenuController::class);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [AdminController::class, 'index'])->name('admin');
+    Route::resource('menu', App\Http\Controllers\MenuController::class);
+});

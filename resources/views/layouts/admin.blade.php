@@ -32,5 +32,6 @@
     <!-- /#right-panel -->
 
    @include('includes.scripts')
+   @stack('scripts')
 </body>
 </html>

@@ -13,9 +13,17 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filterKeyword = $request->keyword;
+
+        if($filterKeyword){
+            $items = Menu::with('category')->where('name', 'LIKE', "%$filterKeyword%")->paginate(25);
+        }else{
+            $items = Menu::with('category')->paginate(25);
+        }
+         
+        return view('pages.menu.index', compact('items'));
     }
 
     /**
@@ -84,6 +92,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Menu::find($id);
+        $item->delete();
+        return redirect(route('menu.index'))->with('alert','Menu berhasil dihapus');
     }
 }
