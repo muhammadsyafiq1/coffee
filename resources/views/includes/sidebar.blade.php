@@ -16,10 +16,10 @@
 
                 <li class="menu-title">Category</li><!-- /.menu-title -->
                 <li class="">
-                    <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat Category</a>
+                    <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Category</a>
                 </li>
                 <li class="">
-                    <a href="#"> <i class="menu-icon fa fa-plus"></i>Tambah Category</a>
+                    <a href="{{ route('category.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Category</a>
                 </li>
 
                 <li class="menu-title">Pesanan</li><!-- /.menu-title -->

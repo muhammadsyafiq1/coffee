@@ -1,23 +1,28 @@
 @extends('layouts.admin')
 
 @section('title')
-    Menu
+    Categories
 @endsection
 
 @section('content')
 <div class="orders">
     <div class="form-inline mb-3">
-        <form action="{{ route('menu.index') }}" class="search-form">
+        <form action="{{ route('category.index') }}" class="search-form">
             @csrf
-            <input class="form-control mr-sm-2" type="text" placeholder="Search menu ..." aria-label="Search" name="keyword" value="{{ Request::get('keyword') }}">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search category ..." aria-label="Search" name="keyword">
             <input type="submit" class="btn btn-sm bg-primary text-white" value="Search">
         </form>
     </div>
     <div class="row">
         <div class="col-lg-12">
+            @if (session('alert'))
+                <div class="alert alert-primary text-center text-white">
+                    <h5>{{ session('alert') }}</h5>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-body">
-                    <h4 class="box-title">List Menu</h4>
+                    <h4 class="box-title">List Category</h4>
                 </div>
                 <div class="card-body--">
                     <div class="table">
@@ -26,23 +31,21 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
+                                    <th>Photo</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($items as $item)
+                                @forelse ($categories as $category)
                                 <tr>
-                                    <td> #{{ $item->id }} </td>
-                                    <td>  <span class="name">{{ $item->name }}</span> </td>
-                                    <td> <span class="product">Daging</span> </td>
-                                    <td> <span class="product">{{ $item->price }}</span> </td>
+                                    <td> #{{ $category->id }} </td>
+                                    <td>  <span class="name">{{ $category->name }}</span> </td>
+                                    <td>  <span class="name"><img src="{{ Storage::url($category->photo) }}" alt="{{ $category->name }}"></span> </td>
                                     <td class="text-center">
-                                        <form action="{{ route('menu.destroy',$item->id) }}" method="post" class="d-inline">
+                                        <form action="{{ route('category.destroy',$category->id) }}" method="post" class="d-inline">
                                             @csrf @method('DELETE')
-                                            <a href="{{ route('menu.show',$item->id) }}" class="btn btn-sm btn-secondary">Detail</a>
-                                            <a href="{{ route('menu.edit',$item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('category.show',$category->id) }}" class="btn btn-sm btn-secondary">Detail</a>
+                                            <a href="{{ route('category.edit',$category->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure ?')">
                                                 Delete
                                             </button>
@@ -51,7 +54,7 @@
                                 </tr>
                                 @empty
                                     <div class="alert alert-primary text-white">
-                                        <h5>Menu Tidak Tersedia</h5>
+                                        <h5>category Tidak Tersedia</h5>
                                     </div>
                                 @endforelse
                             </tbody>
@@ -59,7 +62,7 @@
                     </div> <!-- /.table-stats -->
                 </div>
                 <div class="col-12 mt-5">
-                    {{ $items->links() }}
+                    {{ $categories->links() }}
                 </div>
             </div> <!-- /.card -->
         </div> 
