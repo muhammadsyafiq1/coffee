@@ -36,8 +36,8 @@
                                 <tr>
                                     <td> #{{ $item->id }} </td>
                                     <td>  <span class="name">{{ $item->name }}</span> </td>
-                                    <td> <span class="product">Daging</span> </td>
-                                    <td> <span class="product">{{ $item->price }}</span> </td>
+                                    <td> <span class="product">{{ $item->category->name }}</span> </td>
+                                    <td> <span class="product">Rp.{{ number_format($item->price) }}</span> </td>
                                     <td class="text-center">
                                         <form action="{{ route('menu.destroy',$item->id) }}" method="post" class="d-inline">
                                             @csrf @method('DELETE')

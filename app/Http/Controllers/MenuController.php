@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMenuRequest;
+use App\Models\Category;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
@@ -33,7 +35,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('pages.menu.create');
+        $categories = Category::all();
+        return view('pages.menu.create', compact('categories'));
     }
 
     /**
@@ -45,6 +48,7 @@ class MenuController extends Controller
     public function store(CreateMenuRequest $request)
     {
         $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
         Menu::create($data);
 
         return redirect()->back()->with('alert','Menu Berhasil Ditambahkan.');
@@ -58,7 +62,8 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $menu = Menu::find($id);
+        return view('pages.menu.show', compact('menu'));
     }
 
     /**
@@ -69,7 +74,11 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $menu = Menu::find($id);
+        return view('pages.menu.edit', compact([
+            'categories','menu'
+        ]));
     }
 
     /**
@@ -81,7 +90,11 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        $item = Menu::find($id);
+        $item->update($data);
+        return redirect(route('menu.index'))->with('alert', 'Kategori berhasil ditambah');
     }
 
     /**

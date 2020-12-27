@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('pages.admin.dashboard');
+        $user = User::count();
+
+        return view('pages.admin.dashboard', compact('user'));
     }
 }
