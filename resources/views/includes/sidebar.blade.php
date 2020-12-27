@@ -13,6 +13,9 @@
                 <li class="">
                     <a href="{{ route('menu.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Menu</a>
                 </li>
+                <li class="">
+                    <a href="{{ route('gallery.index') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Foto Menu</a>
+                </li>
 
                 <li class="menu-title">Category</li><!-- /.menu-title -->
                 <li class="">

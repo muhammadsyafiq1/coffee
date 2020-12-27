@@ -17,4 +17,9 @@ class Menu extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function gallery()
+    {
+        return $this->hasMany(Gallery::class, 'product_id');
+    }
 }
