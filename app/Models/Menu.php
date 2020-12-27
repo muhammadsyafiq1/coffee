@@ -20,6 +20,6 @@ class Menu extends Model
 
     public function gallery()
     {
-        return $this->hasMany(Gallery::class, 'product_id');
+        return $this->hasMany(Gallery::class, 'menu_id');
     }
 }

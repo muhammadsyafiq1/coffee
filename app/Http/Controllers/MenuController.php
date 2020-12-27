@@ -18,15 +18,23 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $filterKeyword = $request->keyword;
+        $filterKategori = $request->cari;
+        $categories = Category::all();
+        
 
         if($filterKeyword){
             $items = Menu::with('category')->where('name', 'LIKE', "%$filterKeyword%")->paginate(25);
+        }elseif($filterKategori){
+            $items = Menu::with('category')->where('category_id',$filterKategori)->paginate(25);
         }else{
             $items = Menu::with('category')->paginate(25);
         }
-         
-        return view('pages.menu.index', compact('items'));
+
+        // $drink = Menu::with('category')->where('category_id', '5')->get();
+        //  dd($drink);
+        return view('pages.menu.index', compact('items','categories'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

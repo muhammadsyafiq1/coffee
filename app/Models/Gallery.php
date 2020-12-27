@@ -10,11 +10,11 @@ class Gallery extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id','image'
+        'menu_id','image'
     ];
 
-    public function product()
+    public function menu()
     {
-        return $this->belongsTo(Menu::class, 'product_id');
+        return $this->belongsTo(Menu::class, 'menu_id');
     }
 }

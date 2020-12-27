@@ -24,4 +24,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [AdminController::class, 'index'])->name('admin');
     Route::resource('menu', App\Http\Controllers\MenuController::class);
     Route::resource('category', App\Http\Controllers\CategoryController::class);
+    Route::resource('gallery', App\Http\Controllers\GalleryController::class);
 });

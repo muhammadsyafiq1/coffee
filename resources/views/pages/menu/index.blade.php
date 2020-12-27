@@ -7,10 +7,21 @@
 @section('content')
 <div class="orders">
     <div class="form-inline mb-3">
-        <form action="{{ route('menu.index') }}" class="search-form">
+        <form action="{{ route('menu.index') }}" class="search-form mr-auto">
             @csrf
             <input class="form-control mr-sm-2" type="text" placeholder="Search menu ..." aria-label="Search" name="keyword" value="{{ Request::get('keyword') }}">
             <input type="submit" class="btn btn-sm bg-primary text-white" value="Search">
+        </form>
+
+        <form action="{{ route('menu.index') }}" class="search-form">
+            @csrf
+            <select class="m-auto form-control mr-sm-2" name="cari" id="cari" >
+                <option value="0" disabled selected>Cari Kategori</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+                <input type="submit" class="btn btn-sm bg-primary text-white" value="Search">
+            </select>
         </form>
     </div>
     <div class="row">

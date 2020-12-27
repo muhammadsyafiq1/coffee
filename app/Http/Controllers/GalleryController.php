@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -13,7 +15,9 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::all();
+        $items = Gallery::with('menu')->paginate(25);
+        return view('pages.gallery.index', compact('items','menus'));
     }
 
     /**
@@ -34,7 +38,10 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['image'] = $request->file('image')->store('menuImage','public');
+        Gallery::create($data);
+        return redirect()->back()->with('alert','Gallery menu berhasil ditambah');
     }
 
     /**
@@ -79,6 +86,8 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Gallery::find($id);
+        $item->delete();
+        return redirect(route('gallery.index'))->with('alert','Gallery berhasil dihapus');
     }
 }
