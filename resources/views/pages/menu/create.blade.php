@@ -8,7 +8,7 @@
 <div class="col-lg-12">
     @if (session('alert'))
         <div class="alert alert-primary text-center">
-            <h5 class="text-white">{{ session('alert') }}</h5> <a href="{{ route('menu.index') }}">Lihat Menu</a>
+            <h5 class="text-white">{{ session('alert') }}</h5> <a href="{{ route('gallery.index') }}">Klik untuk memberikan foto Menu</a>
         </div>
     @endif
     <div class="card" style="max-width: 1000px;">
@@ -28,6 +28,7 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="price" class=" form-control-label">Harga</label></div>
                     <div class="col-12 col-md-9"><input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror">
+                        <small><i>format harga 10k, 100k, 1000k (tulis angka saja).</i></small>
                         @error('price')
                         <span class="invalid-feedback">
                             <div class="alert alert-danger">
@@ -63,6 +64,13 @@
                             </div>
                         </span>
                     @enderror</div>
+                </div>
+                <div class="form-check">
+                    <div class="checkbox">
+                        <label for="is_special" class="form-check-label ">
+                            <input type="checkbox" value="1" id="is_special" name="is_special" value="option3" class="form-check-input"> Special ?
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group" style="margin-top: 50px">
                     <div class="12">

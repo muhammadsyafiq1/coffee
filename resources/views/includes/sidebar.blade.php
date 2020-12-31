@@ -17,6 +17,11 @@
                     <a href="{{ route('gallery.index') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Foto Menu</a>
                 </li>
 
+                <li class="menu-title">Table</li><!-- /.menu-title -->
+                <li class="">
+                    <a href="{{ route('table.index') }}"> <i class="menu-icon fa fa-list"></i>Table</a>
+                </li>
+
                 <li class="menu-title">Category</li><!-- /.menu-title -->
                 <li class="">
                     <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Category</a>
@@ -25,9 +30,20 @@
                     <a href="{{ route('category.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Category</a>
                 </li>
 
-                <li class="menu-title">Pesanan</li><!-- /.menu-title -->
+                <li class="menu-title">Stories</li><!-- /.menu-title -->
+                <li class="">
+                    <a href="{{ route('story.index') }}"> <i class="menu-icon fa fa-list"></i>Story</a>
+                </li>
+
+                <li class="menu-title">Manage Time</li><!-- /.menu-title -->
+                <li class="">
+                    <a href="{{ route('time.index') }}"> <i class="menu-icon fa fa-list"></i>Setting time</a>
+                </li>
+
+                <li class="menu-title">Pesanan % Reservasi</li><!-- /.menu-title -->
                 <li class="">
                     <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat pesanan</a>
+                    <a href="{{ route('reservation') }}"> <i class="menu-icon fa fa-list"></i>Lihat reservasi</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

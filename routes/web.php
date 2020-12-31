@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ResrvationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,13 +19,20 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes();
 
-Route::get('/', function(){
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [AdminController::class, 'index'])->name('admin');
+    Route::get('/home', [AdminController::class, 'index'])->name('home');
     Route::resource('menu', App\Http\Controllers\MenuController::class);
+    Route::get('all/menu', [HomeController::class, 'allMenu'])->name('all.menu');
     Route::resource('category', App\Http\Controllers\CategoryController::class);
     Route::resource('gallery', App\Http\Controllers\GalleryController::class);
+    Route::resource('time', App\Http\Controllers\TimeController::class);
+    Route::resource('story', App\Http\Controllers\StoryController::class);
+    Route::resource('table', App\Http\Controllers\TableController::class);
+    Route::post('reservation/create', [ResrvationController::class, 'store'])->name('reservation.store');
+    Route::get('reservation', [ResrvationController::class, 'index'])->name('reservation');
+    Route::get('reservation/{id}/show', [ResrvationController::class, 'show'])->name('reservation.show');
+    Route::get('reservation/{id}/delete', [ResrvationController::class, 'delete'])->name('reservation.destroy');
+    Route::get('reservation-page', [ResrvationController::class, 'reservationPage'])->name('reservationPage');
 });

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Menu;
+use App\Models\Table;
+use App\Models\Time;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +15,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -23,6 +23,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin');
+        $special = Menu::with(['gallery'])->whereHas('gallery')->where('is_special', 1)->take(3)->get();
+        $times = Time::all();
+        $tables = Table::all();
+        $category = Category::with('menu.gallery')->get(); 
+        return view('pages.landingPage.index', compact([
+            'special','times','tables','category'
+        ]));
+    }
+
+    public function allMenu()
+    {
+        $times = Time::all();;
+        $category = Category::with('menu.gallery')->get(); 
+        return view('pages.semua_menu', compact([
+            'times','category'
+        ]));
     }
 }

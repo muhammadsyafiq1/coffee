@@ -56,10 +56,11 @@ class MenuController extends Controller
     public function store(CreateMenuRequest $request)
     {
         $data = $request->all();
+        $data['is_special'] = $request->is_special;
         $data['slug'] = Str::slug($request->name);
         Menu::create($data);
 
-        return redirect()->back()->with('alert','Menu Berhasil Ditambahkan.');
+        return redirect()->back()->with('alert','Menu Berhasil Ditambahkan');
     }
 
     /**
@@ -117,4 +118,5 @@ class MenuController extends Controller
         $item->delete();
         return redirect(route('menu.index'))->with('alert','Menu berhasil dihapus');
     }
+
 }
