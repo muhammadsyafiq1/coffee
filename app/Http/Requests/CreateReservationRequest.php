@@ -29,7 +29,8 @@ class CreateReservationRequest extends FormRequest
             'time' => 'required',
             'date' => 'required',
             'person' => 'required',
-            'table_id' => 'exists:tables,id'
+            'table_id' => 'exists:tables,id',
+            'image' => 'required|images',
         ];
     }
 }

@@ -9,9 +9,9 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="menu.html" class="nav-link">Specialties</a></li>
+            <li class="nav-item"><a href="{{ route('all.menu') }}" class="nav-link">Specialties</a></li>
             <li class="nav-item"><a href="{{ route('reservationPage') }}" class="nav-link">Reservation</a></li>
-            <li class="nav-item"><a href="blog.html" class="nav-link">Stories</a></li>
+            <li class="nav-item"><a href="{{ route('all.blog') }}" class="nav-link">Stories</a></li>
           <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">login</a></li>
         </ul>
       </div>

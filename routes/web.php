@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ResrvationController;
@@ -21,6 +22,8 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('all/menu', [HomeController::class, 'allMenu'])->name('all.menu');
+Route::get('all/blog', [BlogController::class, 'allBlog'])->name('all.blog');
+Route::get('all/{slug}/single', [BlogController::class, 'singleBlog'])->name('single.blog');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [AdminController::class, 'index'])->name('home');
