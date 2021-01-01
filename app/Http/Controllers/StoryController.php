@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateStoryRequest;
+use App\Http\Requests\UpdateStoryRequest;
 use App\Models\Category;
 use App\Models\Story;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class StoryController extends Controller
@@ -39,7 +42,7 @@ class StoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateStoryRequest $request)
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
@@ -69,7 +72,9 @@ class StoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $story = Story::find($id);
+        $categories = Category::all();
+        return view('pages.story.edit', compact('story','categories'));
     }
 
     /**
@@ -79,9 +84,21 @@ class StoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateStoryRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
+        $data['user_id'] = Auth::user()->id;
+        if($request->hasFile('image')){
+            if($request->image && file_exists(storage_path('app/public/'.$request->image))){
+                Storage::delete('public/',$request->image);
+            }
+            $file = $request->file('image')->store('storyImage','public');
+            $data['image'] = $file;
+        }
+        $item = Story::find($id);
+        $item->update($data);
+        return redirect(route('story.index'))->with('alert','Story berhasil diupdate');
     }
 
     /**

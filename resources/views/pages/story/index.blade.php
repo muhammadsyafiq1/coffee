@@ -52,7 +52,6 @@
                                     <td class="text-center">
                                         <form action="{{ route('story.destroy',$story->id) }}" method="post" class="d-inline">
                                             @csrf @method('DELETE')
-                                            <a href="{{ route('story.show',$story->id) }}" class="btn btn-sm btn-secondary">Detail</a>
                                             <a href="{{ route('story.edit',$story->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure ?')">
                                                 Delete

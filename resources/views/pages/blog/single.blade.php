@@ -22,22 +22,13 @@
               <div class="row">
         <div class="col-lg-8 ftco-animate">
           <h2 class="mb-3">{{ $story->title }}</h2>
-          
+          <img src="{{ Storage::url($story->image) }}" alt="{{ $story->title }}">
           <div class="tag-widget post-tag-container mb-5 mt-5">
             <div class="tagcloud">
               <a href="#" class="tag-cloud-link">{{ $story->category->name }}</a>
             </div>
           </div>
           <p>{!! $story->content !!}</p>
-          <div class="about-author d-flex p-4 bg-light">
-            <div class="bio mr-5">
-              <img src="/frontend/images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
-            </div>
-            <div class="desc">
-              <h3>George Washington</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-            </div>
-          </div>
 
 
           <div class="pt-5 mt-5">
@@ -141,19 +132,6 @@
           </div>
 
           <div class="sidebar-box ftco-animate">
-            <h3>Tag Cloud</h3>
-            <ul class="tagcloud m-0 p-0">
-              <a href="#" class="tag-cloud-link">Dish</a>
-              <a href="#" class="tag-cloud-link">Food</a>
-              <a href="#" class="tag-cloud-link">Lunch</a>
-              <a href="#" class="tag-cloud-link">Menu</a>
-              <a href="#" class="tag-cloud-link">Dessert</a>
-              <a href="#" class="tag-cloud-link">Drinks</a>
-              <a href="#" class="tag-cloud-link">Sweets</a>
-            </ul>
-          </div>
-
-          <div class="sidebar-box ftco-animate">
               <h3>Archives</h3>
             <ul class="categories">
                 <li><a href="#">January 2019 <span>(20)</span></a></li>
@@ -162,12 +140,6 @@
               <li><a href="#">September 2018 <span>(6)</span></a></li>
               <li><a href="#">August 2018 <span>(8)</span></a></li>
             </ul>
-          </div>
-
-
-          <div class="sidebar-box ftco-animate">
-            <h3>Paragraph</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
           </div>
         </div><!-- END COL -->
       </div>
