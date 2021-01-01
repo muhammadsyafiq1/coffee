@@ -6,13 +6,6 @@
 
 @section('content')
 <div class="orders">
-    <div class="form-inline mb-3">
-        <form action="{{ route('table.index') }}" class="search-form">
-            @csrf
-            <input class="form-control mr-sm-2" type="text" placeholder="Search table ..." aria-label="Search" name="keyword">
-            <input type="submit" class="btn btn-sm bg-primary text-white" value="Search">
-        </form>
-    </div>
     <div class="row">
         <div class="col-lg-12">
             @if (session('alert'))

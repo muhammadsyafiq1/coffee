@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('all/menu', [HomeController::class, 'allMenu'])->name('all.menu');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [AdminController::class, 'index'])->name('home');
     Route::resource('menu', App\Http\Controllers\MenuController::class);
-    Route::get('all/menu', [HomeController::class, 'allMenu'])->name('all.menu');
     Route::resource('category', App\Http\Controllers\CategoryController::class);
     Route::resource('gallery', App\Http\Controllers\GalleryController::class);
     Route::resource('time', App\Http\Controllers\TimeController::class);

@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function story()
+    {
+        return $this->hasMany(Story::class, 'user_id');
+    }
 }

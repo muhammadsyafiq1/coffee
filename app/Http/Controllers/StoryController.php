@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Story;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class StoryController extends Controller
 {
@@ -13,7 +17,9 @@ class StoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        $stories = Story::with('user','category')->paginate(25);
+        return view('pages.story.index', compact('stories','categories'));
     }
 
     /**
@@ -23,7 +29,8 @@ class StoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('pages.story.create', compact('categories'));
     }
 
     /**
@@ -34,7 +41,13 @@ class StoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
+        $data['user_id'] = Auth::user()->id;
+        $data['image'] = $request->file('image')->store('storyImage','public');
+        Story::create($data);
+
+        return redirect()->back()->with('alert','Story berhasil ditambah');
     }
 
     /**
@@ -79,6 +92,8 @@ class StoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Story::find($id);
+        $data->delete();
+        return redirect(route('story.index'))->with('alert','Story berhasil dihapus');
     }
 }

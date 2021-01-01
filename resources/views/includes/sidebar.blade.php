@@ -34,6 +34,9 @@
                 <li class="">
                     <a href="{{ route('story.index') }}"> <i class="menu-icon fa fa-list"></i>Story</a>
                 </li>
+                <li class="">
+                    <a href="{{ route('story.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Story</a>
+                </li>
 
                 <li class="menu-title">Manage Time</li><!-- /.menu-title -->
                 <li class="">

@@ -17,7 +17,7 @@
                         </div>
                         <div class="stat-content">
                             <div class="text-left dib">
-                                <div class="stat-text">Rp. <span class="count">123901212</span></div>
+                                <div class="stat-text">Rp. <span class="count">{{ $total_harga}}</span></div>
                                 <div class="stat-heading">Penghasilan</div>
                             </div>
                         </div>

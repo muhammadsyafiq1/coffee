@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Menu;
+use App\Models\Reservation;
 use App\Models\Table;
 use App\Models\Time;
 use Illuminate\Http\Request;

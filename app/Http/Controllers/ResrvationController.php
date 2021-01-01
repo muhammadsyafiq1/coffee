@@ -6,6 +6,7 @@ use App\Http\Requests\CreateReservationRequest;
 use App\Models\Reservation;
 use App\Models\Table;
 use App\Models\Time;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class ResrvationController extends Controller
@@ -13,7 +14,7 @@ class ResrvationController extends Controller
 
     public function index()
     {
-        $reservations = Reservation::with('user')->paginate(25);
+        $reservations = Reservation::with('user','table')->paginate(25);
         return view('pages.reservation.index', compact('reservations'));
     }
 
@@ -27,9 +28,20 @@ class ResrvationController extends Controller
     public function store(CreateReservationRequest $request)
     {
         $data = $request->all();
+        $table = Table::where('id', $request->table_id)->first();
         $data['user_id'] = Auth::user()->id;
         $data['image'] = $request->file('image')->store('buktiPembayaran','public');
-        Reservation::create($data);
+
+        Table::where('id', $request->table_id)->decrement('ready');
+
+        $reservation = Reservation::create($data);
+
+        Transaction::create([
+            'reservation_id' => $reservation->id,
+            'table_id' => $request->table_id,
+            'price' => $table->price,
+        ]);
+
         return redirect()->back();
     }
 

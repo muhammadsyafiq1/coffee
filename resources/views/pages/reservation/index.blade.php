@@ -45,6 +45,7 @@
                                     <td>  <span class="name">{{ $reservasi->type == 0 ? 'Medium' : 'Premium' }}</span> </td>
                                     <td>  <span class="name">{{ $reservasi->user->email }}</span> </td>
                                     <td>  <span class="name">{{ $reservasi->phone }}</span> </td>
+                                    <td>  <span class="name">{{ $reservasi->table->price }}</span> </td>
                                     <td class="text-center">
                                         <a href="{{ route('reservation.show',$reservasi->id) }}" class="btn btn-sm btn-secondary">Detail</a>
                                         <a href="{{ route('reservation.destroy',$reservasi->id) }}" class="btn btn-sm btn-danger">Delete</a>
