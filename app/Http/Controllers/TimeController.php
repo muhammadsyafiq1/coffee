@@ -14,7 +14,12 @@ class TimeController extends Controller
      */
     public function index(Request $request)
     {
-        $times = Time::all();
+        $filterKeyword = $request->keyword;
+        if($filterKeyword){
+            $times = Time::where('day', 'LIKE', "%$filterKeyword%")->get();
+        }else {
+            $times = Time::all();
+        }
         return view('pages.times.index', compact('times'));
     }
 

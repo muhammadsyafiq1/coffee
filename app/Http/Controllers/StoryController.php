@@ -18,10 +18,20 @@ class StoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filterKeyword = $request->keyword;
+        $filterKategori = $request->cari;
         $categories = Category::all();
-        $stories = Story::with('user','category')->paginate(25);
+
+        if($filterKeyword){
+            $stories = Story::with('category','user')->where('title', 'LIKE', "%$filterKeyword%")->paginate(25);
+        }elseif($filterKategori){
+            $stories = Story::with('category','user')->where('category_id',$filterKategori)->paginate(25);
+        }else{
+            $stories = Story::with('category')->paginate(25);
+        }
+
         return view('pages.story.index', compact('stories','categories'));
     }
 

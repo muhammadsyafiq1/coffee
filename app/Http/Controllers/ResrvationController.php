@@ -7,14 +7,21 @@ use App\Models\Reservation;
 use App\Models\Table;
 use App\Models\Time;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ResrvationController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $reservations = Reservation::with('user','table')->paginate(25);
+        $filterKeyword = $request->keyword;
+        if($filterKeyword){
+            $reservations = Reservation::with('user','table')->where('id', 'LIKE' , "%$filterKeyword%")->paginate(1);
+        }else {
+
+            $reservations = Reservation::with('user','table')->paginate(25);
+        }
         return view('pages.reservation.index', compact('reservations'));
     }
 

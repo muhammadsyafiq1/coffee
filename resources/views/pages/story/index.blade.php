@@ -61,7 +61,7 @@
                                 </tr>
                                 @empty
                                     <div class="alert alert-primary text-white">
-                                        <h5>Menu Tidak Tersedia</h5>
+                                        <h5>Data Tidak Tersedia</h5>
                                     </div>
                                 @endforelse
                             </tbody>

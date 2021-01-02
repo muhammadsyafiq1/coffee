@@ -9,7 +9,7 @@
     <div class="form-inline mb-3">
         <form action="{{ route('reservation') }}" class="search-form mr-auto">
             @csrf
-            <input class="form-control mr-sm-2" type="text" placeholder="Search menu ..." aria-label="Search" name="keyword" value="{{ Request::get('keyword') }}">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search id ..." aria-label="Search" name="keyword">
             <input type="submit" class="btn btn-sm bg-primary text-white" value="Search">
         </form>
     </div>
@@ -34,6 +34,7 @@
                                     <th>Type</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Price</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -52,7 +53,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                    <div class="alert alert-primary text-white">
+                                    <div class="alert alert-primary text-white text-center">
                                         <h5>No data</h5>
                                     </div>
                                 @endforelse
