@@ -12,6 +12,7 @@ class AdminController extends Controller
     {
         $user = User::count();
         $total_harga = Transaction::sum('price');
-        return view('pages.admin.dashboard', compact('user','total_harga'));
+        $latesReservation = Transaction::with(['reservation.user','table'])->orderBy('id','desc')->take(10)->get(); 
+        return view('pages.admin.dashboard', compact('user','total_harga','latesReservation'));
     }
 }

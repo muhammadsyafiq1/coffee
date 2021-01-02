@@ -22,4 +22,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(Table::class, 'table_id');
     }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class, 'reservation_id');
+    }
 }

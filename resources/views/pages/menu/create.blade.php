@@ -65,6 +65,16 @@
                         </span>
                     @enderror</div>
                 </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="sub_menu" class=" form-control-label">Tambahan <div class="text-muted">(optional)</div></label></div>
+                    <div class="col-12 col-md-9"><textarea name="sub_menu" id="editor" cols="30" rows="10" class="form-control @error('sub_menu') is-invalid @enderror"></textarea> @error('sub_menu')
+                        <span class="invalid-feedback">
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        </span>
+                    @enderror</div>
+                </div>
                 <div class="form-check">
                     <div class="checkbox">
                         <label for="is_special" class="form-check-label ">
