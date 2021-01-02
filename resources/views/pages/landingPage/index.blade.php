@@ -166,7 +166,7 @@
                 <span class="price">{{ number_format($item->price) }} k</span>
               </div>
             </div>
-            <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
+            <a href="{{ route('detail.menu',$item->slug) }}" class="px-4 btn btn-success btn-sm shadow"><span>Detail</span></a>
           </div>
         </div> 
         @endforeach

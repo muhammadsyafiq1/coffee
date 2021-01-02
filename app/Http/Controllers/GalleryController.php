@@ -13,10 +13,16 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filterKeyword = $request->keyword;
+
+        if($filterKeyword){
+            $items = Gallery::with('menu')->where('menu_id', $filterKeyword)->paginate(3);
+        }else{
+            $items = Gallery::with('menu')->paginate(25);
+        }
         $menus = Menu::all();
-        $items = Gallery::with('menu')->paginate(25);
         return view('pages.gallery.index', compact('items','menus'));
     }
 

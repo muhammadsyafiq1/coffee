@@ -9,7 +9,14 @@
     <div class="form-inline mb-3">
         <form action="{{ route('gallery.index') }}" class="search-form">
             @csrf
-            <input class="form-control mr-sm-2" type="text" placeholder="Search menu ..." aria-label="Search" name="keyword" value="{{ Request::get('keyword') }}">
+            <select name="keyword" id="keyword" class="form-control">
+                <option value="0" selected disabled>Pilih Menu</option>
+                @foreach ($menus as $item)
+                    <option value="{{ $item->id }}">
+                        {{ $item->name }}
+                    </option>
+                @endforeach
+            </select>
             <input type="submit" class="btn btn-sm bg-primary text-white" value="Search">
         </form>
     </div>

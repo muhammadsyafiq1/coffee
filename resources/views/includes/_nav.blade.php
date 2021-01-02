@@ -12,7 +12,11 @@
             <li class="nav-item"><a href="{{ route('all.menu') }}" class="nav-link">Specialties</a></li>
             <li class="nav-item"><a href="{{ route('reservationPage') }}" class="nav-link">Reservation</a></li>
             <li class="nav-item"><a href="{{ route('all.blog') }}" class="nav-link">Stories</a></li>
-          <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">login</a></li>
+            @auth
+            <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">Dashboard</a></li>
+            @else
+            <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">login</a></li>
+            @endauth
         </ul>
       </div>
     </div>
