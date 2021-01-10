@@ -26,6 +26,7 @@ Route::get('all/menu', [HomeController::class, 'allMenu'])->name('all.menu');
 Route::get('all/blog', [BlogController::class, 'allBlog'])->name('all.blog');
 Route::get('all/{slug}/single', [BlogController::class, 'singleBlog'])->name('single.blog');
 Route::get('detail/{slug}/menu', [DetailController::class, 'index'])->name('detail.menu');
+Route::post('create/komentar', [BlogController::class, 'komentar'])->name('create.komentar');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [AdminController::class, 'index'])->name('home');

@@ -35,8 +35,8 @@
                         </div>
                         <div class="stat-content">
                             <div class="text-left dib">
-                                <div class="stat-text"><span class="count">3435</span></div>
-                                <div class="stat-heading">Penjualan</div>
+                                <div class="stat-text"><span class="count">{{ $reservation }}</span></div>
+                                <div class="stat-heading">Resrvation</div>
                             </div>
                         </div>
                     </div>

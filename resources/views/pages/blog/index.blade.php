@@ -24,7 +24,7 @@
         @foreach ($stories as $story)
         <div class="col-md-4 ftco-animate">
             <div class="blog-entry">
-            <a href="{{ route('single.blog', $story->slug) }}" class="block-20" style="background-image: url('/frontend/images/image_1.jpg');">
+            <a href="{{ route('single.blog', $story->slug) }}" class="block-20" style="background-image: url('{{ Storage::url($story->image) }}');">
             </a>
             <div class="text px-4 pt-3 pb-4">
                 <div class="meta">

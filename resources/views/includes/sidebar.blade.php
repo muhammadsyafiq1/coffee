@@ -19,15 +19,15 @@
 
                 <li class="menu-title">Table</li><!-- /.menu-title -->
                 <li class="">
-                    <a href="{{ route('table.index') }}"> <i class="menu-icon fa fa-list"></i>Table</a>
+                    <a href="{{ route('table.index') }}"> <i class="menu-icon fa fa-list"></i>Kategori Meja</a>
                 </li>
 
-                <li class="menu-title">Category</li><!-- /.menu-title -->
+                <li class="menu-title">Kategori</li><!-- /.menu-title -->
                 <li class="">
-                    <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Category</a>
+                    <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Kategori</a>
                 </li>
                 <li class="">
-                    <a href="{{ route('category.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Category</a>
+                    <a href="{{ route('category.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Kategori</a>
                 </li>
 
                 <li class="menu-title">Stories</li><!-- /.menu-title -->

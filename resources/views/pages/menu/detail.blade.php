@@ -29,21 +29,13 @@
             </div>
             <div class="col-4">
                 <div class="thubmnail">
+                    @foreach ($item->gallery as $gallery)
                     <div class="row mb-3 ">
                         <a href="">
-                            <img class="menu-big-img" src="{{ Storage::url($item->gallery->first()->image) }}" alt="image" style="width: 200px;">
+                            <img class="menu-big-img" src="{{ Storage::url($gallery->image) }}" alt="image" style="width: 200px;">
                         </a>
                     </div>
-                    <div class="row mb-3">
-                        <a href="">
-                            <img class="menu-big-img" src="{{ Storage::url($item->gallery->first()->image) }}" alt="image" style="width: 200px;">
-                        </a>
-                    </div>
-                    <div class="row mb-3">
-                        <a href="">
-                            <img class="menu-big-img" src="{{ Storage::url($item->gallery->first()->image) }}" alt="image" style="width: 200px;">
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -59,7 +51,7 @@
                     Pesan Sekarang
                 </a>
                 @else
-                <a  href="" class="btn btn-success block py-2 px-3 shadow">
+                <a  href="{{ route('login') }}" class="btn btn-success block py-2 px-3 shadow">
                     Login
                 </a>
                 @endauth

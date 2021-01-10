@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     @include('includes._style')
+    @stack('styles')
   </head>
   <body>
     @include('includes._nav')
@@ -23,6 +24,7 @@
 
 
   @include('includes._script')
+  @stack('scripts')
     
   </body>
 </html>

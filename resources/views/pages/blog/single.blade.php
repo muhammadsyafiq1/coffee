@@ -22,7 +22,7 @@
               <div class="row">
         <div class="col-lg-8 ftco-animate">
           <h2 class="mb-3">{{ $story->title }}</h2>
-          <img src="{{ Storage::url($story->image) }}" alt="{{ $story->title }}">
+          <img src="{{ Storage::url($story->image) }}" alt="{{ $story->title }}" style="width: 500px;">
           <div class="tag-widget post-tag-container mb-5 mt-5">
             <div class="tagcloud">
               <a href="#" class="tag-cloud-link">{{ $story->category->name }}</a>
@@ -32,40 +32,50 @@
 
 
           <div class="pt-5 mt-5">
-            <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">07 Feedbacks</h3>
+            <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">{{ $komentars->count() }} Feedback</h3>
             <ul class="comment-list">
+             @forelse ($komentars as $komentar)
               <li class="comment">
                 <div class="vcard bio">
                   <img src="/frontend/images/person_1.jpg" alt="Image placeholder">
                 </div>
                 <div class="comment-body">
-                  <h3>John Doe</h3>
-                  <div class="meta mb-2">January 03, 2019 at 2:21pm</div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                  <h3>{{ $komentar->name }}</h3>
+                  <div class="meta mb-2">{{ $komentar->created_at->diffForHumans() }}</div>
+                  <p>{{ $komentar->message }}</p>
                 </div>
               </li>
+             @empty
+                 <div class="row">
+                   <div class="alert alert-primary">
+                     <h5 class="text-white">Belum Ada Koemntar</h5>
+                   </div>
+                 </div>
+             @endforelse
             </ul>
             <!-- END comment-list -->
             
             <div class="comment-form-wrap pt-5">
               <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">Leave a comment</h3>
-              <form action="#" class="p-4 p-md-5 bg-light">
+              <form action="{{ route('create.komentar') }}" class="p-4 p-md-5 bg-light" method="POST">
+                @csrf
+                <input type="hidden" name="story_id" value="{{ $story->id }}">
                 <div class="form-group">
                   <label for="name">Name *</label>
-                  <input type="text" class="form-control" id="name">
+                  <input type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="form-group">
                   <label for="email">Email *</label>
-                  <input type="email" class="form-control" id="email">
+                  <input type="email" class="form-control" id="email" name="email">
                 </div>
                 <div class="form-group">
                   <label for="website">Website</label>
-                  <input type="url" class="form-control" id="website">
+                  <input type="url" class="form-control" id="website" name="website">
                 </div>
 
                 <div class="form-group">
                   <label for="message">Message</label>
-                  <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                  <textarea id="message" cols="30" rows="10" class="form-control" name="message"></textarea>
                 </div>
                 <div class="form-group">
                   <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
@@ -89,46 +99,26 @@
               <h3>Category</h3>
             <ul class="categories">
               @foreach ($category as $item)
-              <li><a href="#">{{ $item->name }} <span>({{ $item->menu->count() }})</span></a></li>
+              <li><a href="{{ route('all.menu') }}">{{ $item->name }} <span>({{ $item->menu->count() }})</span></a></li>
               @endforeach
             </ul>
           </div>
 
           <div class="sidebar-box ftco-animate">
             <h3>Popular Articles</h3>
+            @foreach ($populars as $popular)
             <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(/frontend/images/image_1.jpg);"></a>
+              <a class="blog-img mr-4" style="background-image: url('{{ Storage::url($popular->image) }}');"></a>
               <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <h3 class="heading"><a href="{{ route('single.blog', $popular->slug) }}">{{ $popular->title }}</a></h3>
                 <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> Feb. 04, 2019</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                  <div><a href="#"><span class="icon-calendar"></span> {{ $popular->created_at->diffForHumans() }}</a></div>
+                  <div><a href="#"><span class="icon-person"></span>{{ $popular->user->name }}</a></div>
+                  <div><a href="#"><span class="icon-chat"></span> {{ $popular->comments->count() }}</a></div>
                 </div>
               </div>
             </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(/frontend/images/image_2.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> Feb. 04, 2019</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(/frontend/images/image_3.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> Feb. 04, 2019</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
 
           <div class="sidebar-box ftco-animate">

@@ -112,7 +112,7 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="20000">0</strong>
+                <strong class="number" data-number="{{ $user }}">0</strong>
                 <span>Happy Customers</span>
               </div>
             </div>
@@ -120,7 +120,7 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="564">0</strong>
+                <strong class="number" data-number="{{ $menu }}">0</strong>
                 <span>Finished Projects</span>
               </div>
             </div>
@@ -128,8 +128,8 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="300">0</strong>
-                <span>Working Days</span>
+                <strong class="number" data-number="{{ $category->count() }}">0</strong>
+                <span>Category</span>
               </div>
             </div>
           </div>

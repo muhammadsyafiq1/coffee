@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\Reservation;
 use App\Models\Table;
 use App\Models\Time;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,9 +28,11 @@ class HomeController extends Controller
         $special = Menu::with(['gallery'])->whereHas('gallery')->where('is_special', 1)->take(3)->get();
         $times = Time::all();
         $tables = Table::all();
+        $user = User::count();
+        $menu = Menu::count();
         $category = Category::with('menu.gallery')->get(); 
         return view('pages.landingPage.index', compact([
-            'special','times','tables','category'
+            'special','times','tables','category','user','menu'
         ]));
     }
 
